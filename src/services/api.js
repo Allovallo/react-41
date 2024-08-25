@@ -1,23 +1,23 @@
-import axios from "axios";
+import axios from 'axios';
 
-axios.defaults.baseURL = "https://62584f320c918296a49543e7.mockapi.io";
+axios.defaults.baseURL = 'https://66cb337b4290b1c4f199bc03.mockapi.io';
 
-export const addMaterial = async (values) => {
-  const response = await axios.post("/materials", values);
+export const addMaterial = async values => {
+  const response = await axios.post('/materials', values);
   return response.data;
 };
 
 export const getMaterials = async () => {
-  const response = await axios.get("/materials");
+  const response = await axios.get('/materials');
   return response.data;
 };
 
-export const deleteMaterial = async (id) => {
+export const deleteMaterial = async id => {
   const response = await axios.delete(`/materials/${id}`);
   return response.data;
 };
 
-export const updateMaterial = async (fields) => {
+export const updateMaterial = async fields => {
   const response = await axios.put(`/materials/${fields.id}`, fields);
   return response.data;
 };

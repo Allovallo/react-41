@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import { GlobalStyle } from "./GlobalStyle";
-import { Layout } from "./Layout";
-import { MaterialEditorForm } from "./MaterialEditorForm/MaterialEditorForm";
-import { MaterialList } from "./MaterialList/MaterialList";
-import * as API from "services/api";
+import { useState, useEffect } from 'react';
+import { GlobalStyle } from './GlobalStyle';
+import { Layout } from './Layout';
+import { MaterialEditorForm } from './MaterialEditorForm/MaterialEditorForm';
+import { MaterialList } from './MaterialList/MaterialList';
+import * as API from 'services/api';
 
-export const App = () => {
+const App = () => {
   const [materials, setMaterials] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -26,10 +26,10 @@ export const App = () => {
     fetchMaterials();
   }, []);
 
-  const addMaterial = async (values) => {
+  const addMaterial = async values => {
     try {
       const material = await API.addMaterial(values);
-      setMaterials((prevMaterials) => [...prevMaterials, material]);
+      setMaterials(prevMaterials => [...prevMaterials, material]);
     } catch (error) {
       setError(true);
       setIsLoading(false);
@@ -37,11 +37,11 @@ export const App = () => {
     }
   };
 
-  const deleteMaterial = async (id) => {
+  const deleteMaterial = async id => {
     try {
       await API.deleteMaterial(id);
-      setMaterials((prevMaterials) =>
-        prevMaterials.filter((material) => material.id !== id)
+      setMaterials(prevMaterials =>
+        prevMaterials.filter(material => material.id !== id)
       );
     } catch (error) {
       setError(true);
@@ -49,11 +49,11 @@ export const App = () => {
     }
   };
 
-  const updateMaterial = async (fields) => {
+  const updateMaterial = async fields => {
     try {
       const updatedMaterial = await API.updateMaterial(fields);
-      setMaterials((prevMaterials) =>
-        prevMaterials.map((material) =>
+      setMaterials(prevMaterials =>
+        prevMaterials.map(material =>
           material.id === fields.id ? updatedMaterial : material
         )
       );
@@ -74,7 +74,7 @@ export const App = () => {
       )}
       <MaterialEditorForm onSubmit={addMaterial} />
       {isLoading ? (
-        "Загружаем материалы"
+        'Загружаем материалы'
       ) : (
         <MaterialList
           items={materials}
@@ -85,3 +85,5 @@ export const App = () => {
     </Layout>
   );
 };
+
+export default App();
