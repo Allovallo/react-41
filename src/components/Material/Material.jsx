@@ -1,4 +1,4 @@
-import { useModal } from 'hooks';
+import { useModal } from "../../hooks/useModal";
 
 const EditMaterialModal = ({ onClose, onEdit }) => {
   return (
